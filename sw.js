@@ -1,12 +1,13 @@
-const CACHE = 'exercise-v5';
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(['/', '/index.html', '/manifest.json'])));
+// Self-unregistering service worker - clears any old broken caches
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))));
-  self.clients.claim();
-});
-self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+
+self.addEventListener('activate', async () => {
+  const keys = await caches.keys();
+  await Promise.all(keys.map(k => caches.delete(k)));
+  await self.registration.unregister();
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => client.navigate(client.url));
+  });
 });
