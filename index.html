@@ -604,12 +604,12 @@ const WEEK_ROUNDS = [4,4,5,5,6,6];
 const HIGH_REPS = [false,true,false,true,false,true];
 
 const RUNS = [
-  {wk:1,tue:'Easy 3–4 mi · Zone 2 (~10:00–10:30/mi)',thu:'6 × 400m @ hard effort, 90 sec rest between',sat:'Long run — 5 mi easy',notes:'~11–12 mi total — step back week as lifting starts'},
-  {wk:2,tue:'Easy 4 mi · Zone 2',thu:'4 × 1 mi @ 10K effort, 2 min rest',sat:'Long run — 5–6 mi easy',notes:'~13–14 mi total'},
-  {wk:3,tue:'Easy 4 mi · Zone 2',thu:'Fartlek — 30 sec hard / 1 min easy × 12 rounds',sat:'Long run — 6 mi easy',notes:'~14–15 mi — circuits go to 5 rounds, keep runs moderate'},
-  {wk:4,tue:'Easy 4–5 mi · Zone 2',thu:'3 × 1.5 mi @ 10K effort, 2 min rest',sat:'Long run — 7 mi easy',notes:'~16–17 mi — strongest week'},
-  {wk:5,tue:'Easy 4 mi · Zone 2',thu:'Progression run — start easy, build to tempo by last mile',sat:'Long run — 6 mi easy',notes:'Long run drops slightly — circuits hit 6 rounds'},
-  {wk:6,tue:'Easy 4 mi · Zone 2',thu:'3 mi @ 10K race pace — short, fast, done',sat:'Long run — 8 mi easy',notes:'~15 mi — peak long run, finish the program strong'},
+  {wk:1,mon:'Easy 3–5 mi · flat route · run first before circuit',tue:'Easy 3–4 mi · Zone 2 (~10:00–10:30/mi)',thu:'6 × 400m @ hard effort, 90 sec rest between',sat:'Long run — 5 mi easy',notes:'~14–17 mi total — step back week as lifting starts'},
+  {wk:2,mon:'Easy 3–5 mi · flat route · run first before circuit',tue:'Easy 4 mi · Zone 2',thu:'4 × 1 mi @ 10K effort, 2 min rest',sat:'Long run — 5–6 mi easy',notes:'~15–18 mi total'},
+  {wk:3,mon:'Easy 3–5 mi · flat route · run first before circuit',tue:'Easy 4 mi · Zone 2',thu:'Fartlek — 30 sec hard / 1 min easy × 12 rounds',sat:'Long run — 6 mi easy',notes:'~17–19 mi — circuits go to 5 rounds, keep runs moderate'},
+  {wk:4,mon:'Easy 3–5 mi · flat route · run first before circuit',tue:'Easy 4–5 mi · Zone 2',thu:'3 × 1.5 mi @ 10K effort, 2 min rest',sat:'Long run — 7 mi easy',notes:'~19–21 mi — strongest week'},
+  {wk:5,mon:'Easy 3–5 mi · flat route · run first before circuit',tue:'Easy 4 mi · Zone 2',thu:'Progression run — start easy, build to tempo by last mile',sat:'Long run — 6 mi easy',notes:'Long run drops slightly — circuits hit 6 rounds'},
+  {wk:6,mon:'Easy 3–5 mi · flat route · run first before circuit',tue:'Easy 4 mi · Zone 2',thu:'3 mi @ 10K race pace — short, fast, done',sat:'Long run — 8 mi easy',notes:'~18–21 mi — peak long run, finish the program strong'},
 ];
 
 const TIPS = [
@@ -825,6 +825,7 @@ function renderRuns() {
   let html = '';
   RUNS.forEach((r, wi) => {
     const sessions = [
+      {label:'Mon — easy run (before circuit)', desc:r.mon, key:'run_w'+wi+'_mon'},
       {label:'Tue — easy run', desc:r.tue, key:'run_w'+wi+'_tue'},
       {label:'Thu — structured run', desc:r.thu, key:'run_w'+wi+'_thu'},
       {label:'Sat — long run', desc:r.sat, key:'run_w'+wi+'_sat'},
